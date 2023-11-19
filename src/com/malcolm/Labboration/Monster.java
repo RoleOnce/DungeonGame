@@ -77,9 +77,4 @@ public class Monster implements ICombat {
             setHealth(getHealth() - damage);
         }
     }
-
-    @Override
-    public void flee() {
-
-    }
 }

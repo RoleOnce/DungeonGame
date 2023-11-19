@@ -164,37 +164,4 @@ public class Player implements ICombat{
         }
     }
 
-    public void flee() {
-
-        Random random = new Random();
-
-        int x = random.nextInt(100);
-
-        if (x < agility) {
-            System.exit(0);
-        } else {
-            System.out.println("Not so lucky.. ");
-        }
-    }
-
-    // (INTE 100%) MEN PÅ DETTA SÄTT KAN SPELAREN MED TUR DUCKA ATTACKER SOM KOMMER FRÅN MONSTRET
-    // TODO - KAN JAG HA DENNA KOMBINERAD MED 'takeDamage'?
-    public void didDodge() {
-        boolean didPlayerDodge;
-
-        Random random = new Random();
-
-        int testYourLuck = random.nextInt(100) + 1;
-
-        if (testYourLuck < agility) {
-            System.out.println("You dodged the attack! AWESOME");
-        } else {
-            System.out.println("You didn't managed to dodge the attack..");
-        }
-    }
-
-
-
-
-
 }

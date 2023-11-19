@@ -1,7 +1,6 @@
 package com.malcolm.Labboration;
 
 import java.util.Scanner;
-
 import static com.malcolm.Labboration.Colors.*;
 
 public class Main {
@@ -23,8 +22,8 @@ public class Main {
         Monster monster = new Monster(
                 "The Valhalla Vi-King",
                 6,
-                70,
-                20
+                65,
+                18
         );
 
         // =====> VÄLKOMSTTEXT <=====
@@ -77,7 +76,7 @@ public class Main {
                     """ + RESET);
             switch (sc.nextLine()) {
                 case "1" -> attack(player, monster);
-                case "2" -> isPlaying = false; //player.flee();
+                case "2" -> isPlaying = false;
                 case "3" -> monster.getMonsterStatus();
 
                 default -> System.out.println("Try again");
@@ -110,18 +109,15 @@ public class Main {
         if (monster.getHealth() <= 0) {
             System.out.println(GREEN + "...");
             System.out.println("You just killed a monster, AWESOME!!");
-            //System.out.println("This is your remaining health: --> " + player.getHealth() + "HP <--\n" + RESET);
             System.out.println(BLUE + "\nYour health has been restored");
             System.out.println("..." + RESET);
 
             monster.setHealth(50);
+            monster.setAgility(monster.getAgility() + 2);
+            monster.setStrength(monster.getStrength() + 2);
             player.setHealth(50);
 
             player.levelUp(85);
         }
     }
-
-
-
-
 }
