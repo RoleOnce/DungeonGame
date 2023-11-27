@@ -10,16 +10,18 @@ public class Monster implements ICombat {
     private int strength;
     private int health;
     private int agility;
+    private int baseDamage;
 
     // =====>> KLAR <<=====
     /*
     DETTA ÄR EN KONSTRUKTOR FÖR MONSTRETS ATTRIBUTER
      */
-    public Monster(String name, int strength, int health, int agility) {
-        this.name = name;
+    public Monster(int strength, int health, int agility, int baseDamage) {
+        //this.name = name;
         this.strength = strength;
         this.health = health;
         this.agility = agility;
+        this.baseDamage = baseDamage;
     }
 
     //=====>> KLAR <<=====
@@ -76,5 +78,10 @@ public class Monster implements ICombat {
         } else {
             setHealth(getHealth() - damage);
         }
+    }
+
+    @Override
+    public int getDamage() {
+        return baseDamage + strength;
     }
 }

@@ -164,4 +164,9 @@ public class Player implements ICombat{
         }
     }
 
+    @Override
+    public int getDamage() {
+        return baseDamage + strength;
+    }
+
 }

@@ -20,10 +20,10 @@ public class Main {
                 5
         );
         Monster monster = new Monster(
-                "The Valhalla Vi-King",
                 6,
                 65,
-                18
+                18,
+                3
         );
 
         // =====> VÄLKOMSTTEXT <=====
