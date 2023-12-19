@@ -5,19 +5,17 @@ import static com.malcolm.Labboration.Colors.*;
 
 public class Player implements ICombat{
 
+    // VARIABLER
     private String name;
-    private int strength; // DETTA SKA PÅVERKA HUR MYCKET SKADA MAN UTFÖR MOT MONSTRET
-    private int intelligence; // JU MER MAN HAR DESTO STÖRRE CHANS FÖR ATT DUBBLA SIN SKADA
-    private int agility; // DETTA ÖKAR CHANSEN ATT MOTSTÅNDAREN MISSAR SPELAREN
-    private int health; // TODO - WUT??? "UTÖKAS MAXIMALA ANTALET LIV SPELAREN HAR"
-    private int experience; // VARJE 100:E POÄNG ÄR 1 LVL UPP (LVL +1)
-    private int level; // VID VARJE LVL ÖKAR STYRKA, INTELLIGENCE & AGILITY MED 2.
-    private int baseDamage; // TODO - WUUUT?? KALKYLERA HUR MYCKET SKADA SPELAREN TILLFÖR VID VARJE ATTACK.
+    private int strength;
+    private int intelligence;
+    private int agility;
+    private int health;
+    private int experience;
+    private int level;
+    private int baseDamage;
 
-    // =====>> KLAR <<=====
-    /*
-    DETTA ÄR EN KONSTRUKTOR FÖR SPELAREN OCH DESS ATTRIBUTER
-     */
+    // KONSTRUKTOR
     public Player(int strength, int intelligence, int agility, int health, int level, int baseDamage) {
         this.strength = strength;
         this.intelligence = intelligence;
@@ -27,10 +25,7 @@ public class Player implements ICombat{
         this.baseDamage = baseDamage;
     }
 
-    // =====>> KLAR <<=====
-    /*
-    =====>> GETTERS AND SETTERS <<=====
-     */
+    // GETTERS OCH SETTERS
     public String getName() {
         return name;
     }
@@ -80,17 +75,7 @@ public class Player implements ICombat{
         this.level = level;
     }
 
-    public int getBaseDamage() {
-        return baseDamage;
-    }
-    public void setBaseDamage(int baseDamage) {
-        this.baseDamage = baseDamage;
-    }
-
-    // =====>> KLAR <<=====
-    /*
-    MED DENNA METOD KAN MAN FÅ FRAM STATUS/EGENSKAPER PÅ SPELAREN
-     */
+    // SPELAREN STATUS/EGENSKAPER
     public void getStatus() {
         System.out.printf("Name: %s %n", name);
         System.out.printf("Strength: %d %n", strength);
@@ -100,13 +85,9 @@ public class Player implements ICombat{
         System.out.printf("Experience: %d %n", experience);
         System.out.printf("Level: %d %n", level);
         System.out.printf("Base Damage: %d %n", baseDamage);
-
     }
 
-    // =====>> KLAR <<=====
-    /*
-    MED DENNA METOD KAN SPELAREN GÅ UPP I LVL MED HJÄLP AV EXP.
-     */
+    // MED DENNA METOD KAN SPELAREN GÅ UPP I LVL MED HJÄLP AV EXP
     public void levelUp(int amountOfExp) {
         for (int i = amountOfExp; i > 0; i--) {
             setExperience(getExperience() + 1);
@@ -119,18 +100,23 @@ public class Player implements ICombat{
                 setAgility(getAgility() + 2);
                 setHealth(getHealth() + 2);
 
-                System.out.println(PURPLE + "YOU REACHED NEW LEVEL.. CONGRATS!!" + RESET);
+                System.out.println(BLUE + "YOU REACHED NEW LEVEL.. CONGRATS!!\n" + RESET);
             }
         }
 
-        System.out.println(Colors.BLUE + "CURRENT EXP");
+        System.out.println(BLUE + "==============");
+        System.out.println("CURRENT HEALTH");
+        System.out.println(getHealth());
+
+        System.out.println("CURRENT EXP");
         System.out.println(getExperience());
 
         System.out.println("PLAYER LEVEL:");
-        System.out.println(getLevel() + Colors.RESET);
+        System.out.println(getLevel());
+        System.out.println("==============" + RESET);
     }
 
-    // =====>> KLAR <<=====
+    // KALKYLERA SKADA
     public int calculateDamage(int strength) {
         Random random = new Random();
 
@@ -138,19 +124,15 @@ public class Player implements ICombat{
 
         if (randomNr < intelligence) {
             strength = baseDamage + (strength * 2 / 2 + 1);
-            System.out.println(PURPLE + "===> CRITICAL HIT ON MONSTER! <===");
+            System.out.println(BLUE + "===> CRITICAL HIT ON MONSTER! <===");
             return strength;
         } else {
             strength = baseDamage + (strength * 2 / 4 + 1);
             return strength;
         }
-
     }
 
-    // =====>> KLAR <<=====
-    /*
-    MED DENNA METOD TAR SPELAREN SKADA AV MONSTRET "ATTACKERAR"
-     */
+    // MED DENNA METOD TAR SPELAREN SKADA AV MONSTRET "ATTACKERAR"
     @Override
     public void attack(int damage) {
         Random random = new Random();
@@ -158,12 +140,13 @@ public class Player implements ICombat{
         int testYourLuck = random.nextInt(100) + 1;
 
         if (testYourLuck < agility) {
-            System.out.println(PURPLE + "===> YOU DODGED!! <===" + RESET);
+            System.out.println(BLUE + "===> YOU DODGED!! <===" + RESET);
         } else {
             setHealth(getHealth() - damage);
         }
     }
 
+    // FRÅN ICOMBAT
     @Override
     public int getDamage() {
         return baseDamage + strength;

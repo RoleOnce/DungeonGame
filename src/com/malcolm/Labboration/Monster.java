@@ -5,34 +5,24 @@ import static com.malcolm.Labboration.Colors.*;
 
 public class Monster implements ICombat {
 
-    // ----> MONSTER VARIABLES <----
-    private String name;
+    // VARIABLER
+    private String name = "Valhalla Worrior";
     private int strength;
     private int health;
     private int agility;
     private int baseDamage;
 
-    // =====>> KLAR <<=====
-    /*
-    DETTA ÄR EN KONSTRUKTOR FÖR MONSTRETS ATTRIBUTER
-     */
+    // KONSTRUKTOR
     public Monster(int strength, int health, int agility, int baseDamage) {
-        //this.name = name;
         this.strength = strength;
         this.health = health;
         this.agility = agility;
         this.baseDamage = baseDamage;
     }
 
-    //=====>> KLAR <<=====
-    /*
-    =====>> GETTERS AND SETTERS FOR MONSTER <<=====
-     */
+    // GETTERS OCH SETTERS
     public String getName() {
         return name;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getStrength() {
@@ -56,10 +46,7 @@ public class Monster implements ICombat {
         this.agility = agility;
     }
 
-    // =====>> KLAR <<=====
-    /*
-    DENNA METOD VISAR MONSTRETS STATUS/EGENSKAPER
-     */
+    // MONSTRETS STATUS/EGENSKAPER
     public void getMonsterStatus() {
         System.out.printf("Name: %s %n", name);
         System.out.printf("Strength: %d %n", strength);
@@ -67,6 +54,7 @@ public class Monster implements ICombat {
         System.out.printf("Agility: %d %n", agility);
     }
 
+    // FRÅN ICOMBAT
     @Override
     public void attack(int damage) {
         Random random = new Random();
@@ -74,7 +62,7 @@ public class Monster implements ICombat {
         int testYourLuck = random.nextInt(100) + 1;
 
         if (testYourLuck < agility) {
-            System.out.println(PURPLE + "===> MONSTER DODGED!! <===" + RESET);
+            System.out.println(BLUE + "===> MONSTER DODGED!! <===" + RESET);
         } else {
             setHealth(getHealth() - damage);
         }

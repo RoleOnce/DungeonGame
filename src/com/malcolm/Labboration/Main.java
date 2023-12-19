@@ -7,10 +7,8 @@ public class Main {
 
     static Scanner sc = new Scanner(System.in);
 
-    // =====>> KLAR <<===== ??
     public static void main(String[] args) {
 
-        // SKAPA OBJECT FÖR PLAYER OCH MONSTER
         Player player = new Player(
                 8,
                 5,
@@ -27,20 +25,17 @@ public class Main {
         );
 
         // =====> VÄLKOMSTTEXT <=====
-        System.out.println(RED + "Welcome dearest fellower");
-        System.out.println("Please state you birth name? ");
+        System.out.println(GREEN_BOLD + "You are entering a dangerous game..");
+        System.out.println("State you birth name");
         player.setName(sc.nextLine());
-        System.out.println(player.getName() + "... I hope you're ready" + RESET);
+        System.out.println("I hope you're ready " + player.getName() + RESET);
 
-        // =====>> KLAR <<=====
-        /*
-        SKAPA EN MENY DÄR MAN KAN VÄLJA MELLAN ATT SLÅS, SE SPELAR-STATUS ELLER ATT AVSLUTA SPELET
-         */
+        // STARTMENY
         do {
-            System.out.println(RED + """
+            System.out.println(YELLOW + """
                                         
                     -----> START MENU <-----
-                    Pleas make a selection
+                    Make a selection
                     1. Fight A Monster
                     2. See Your Status
                     3. Exit Game
@@ -51,21 +46,17 @@ public class Main {
                 case "2" -> player.getStatus();
                 case "3" -> System.exit(0);
 
-                default -> System.out.println(RED + "Try again" + RESET);
+                default -> System.out.println(WHITE_BOLD + "Not a correct input.. Try again" + RESET);
             }
 
         } while (true);
     }
 
-    // =====>> KLAR <<=====
-    /*
-    MED DENNA METOD SKA MAN KUNNA ATTACKERA, MAN KUNNA FLY TILLBAKA TILL START MENU
-    OCH MAN SKA KUNNA SE STATUS PÅ MONSTRET.
-     */
+    // ATTACKMENYN
     public static void fightMenu(Player player, Monster monster) {
         boolean isPlaying = true;
         do {
-            System.out.println(RED + """ 
+            System.out.println(YELLOW + """ 
                                         
                     -----> BATTLE MENU <-----
                     You have chosen to battle with a monster.
@@ -79,26 +70,20 @@ public class Main {
                 case "2" -> isPlaying = false;
                 case "3" -> monster.getMonsterStatus();
 
-                default -> System.out.println("Try again");
+                default -> System.out.println(WHITE_BOLD + "Not a correct input.. Try again" + RESET);
             }
         } while (isPlaying);
     }
 
-    // =====>> KLAR <<===== ??
-    /*
-    - MED DENNA METOD SKA SPELAREN OCH MONSTRET MÖTAS I EN KAMP DÄR BÅDA
-      SLÅR VARSIN GÅNG MOT VARANDRA OCH FÖRLORAR HP.
-    - VINNER SPELAREN FÅR MAN ETT MEDDELANDE SOM BEKRÄFTAR DET.
-    - VINNER MONSTRET FÅR MAN ETT MEDDELANDE SOM BEKRÄFTAR DET.
-     */
+    // MED DENNA METOD MÖTS SPELAREN OCH MONSTRET I EN KAMP
     public static void attack(Player player, Monster monster) {
-        System.out.println(YELLOW + player.getName() + " is attacking " + monster.getName());
+        System.out.println(PURPLE + player.getName() + " is attacking " + monster.getName());
 
         monster.attack(player.calculateDamage(player.getStrength()));
         player.attack(monster.getStrength());
 
-        System.out.println("\n" + YELLOW + player.getName() + " has " + player.getHealth() + "HP left");
-        System.out.println(monster.getName() + " has " + monster.getHealth() + "HP left" + RESET);
+        System.out.println("\n" + PURPLE + player.getName() + " has " + GREEN + player.getHealth() + "HP" + RESET + PURPLE + " left");
+        System.out.println(monster.getName() + " has " + GREEN + monster.getHealth() + "HP" + RESET + PURPLE + " left");
 
         if (player.getHealth() <= 0) {
             System.out.println(BLUE + "...");
@@ -107,10 +92,8 @@ public class Main {
         }
 
         if (monster.getHealth() <= 0) {
-            System.out.println(GREEN + "...");
-            System.out.println("You just killed a monster, AWESOME!!");
-            System.out.println(BLUE + "\nYour health has been restored");
-            System.out.println("..." + RESET);
+            System.out.println("\n...YOU KILLED THE MONSTER, AWESOME!!");
+            System.out.println(BLUE + "\n===> Your health has been restored <===\n" + RESET);
 
             monster.setHealth(50);
             monster.setAgility(monster.getAgility() + 2);
