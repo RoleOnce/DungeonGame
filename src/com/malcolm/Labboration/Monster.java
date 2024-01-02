@@ -1,5 +1,4 @@
 package com.malcolm.Labboration;
-
 import java.util.Random;
 import static com.malcolm.Labboration.Colors.*;
 
@@ -11,6 +10,7 @@ public class Monster implements ICombat {
     private int health;
     private int agility;
     private int baseDamage;
+    private int monsterID;
 
     // KONSTRUKTOR
     public Monster(int strength, int health, int agility, int baseDamage) {
@@ -46,6 +46,17 @@ public class Monster implements ICombat {
         this.agility = agility;
     }
 
+    public int getBaseDamage() {
+        return baseDamage;
+    }
+
+    public int getMonsterID() {
+        return monsterID;
+    }
+    public void setMonsterID(int monsterID) {
+        this.monsterID = monsterID;
+    }
+
     // MONSTRETS STATUS/EGENSKAPER
     public void getMonsterStatus() {
         System.out.printf("Name: %s %n", name);
@@ -57,6 +68,7 @@ public class Monster implements ICombat {
     // FRÅN ICOMBAT
     @Override
     public void attack(int damage) {
+        DBConnection db = new DBConnection();
         Random random = new Random();
 
         int testYourLuck = random.nextInt(100) + 1;

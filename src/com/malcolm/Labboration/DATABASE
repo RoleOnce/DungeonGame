@@ -1,0 +1,26 @@
+-- DungeonGame.monster definition
+
+CREATE TABLE `monster` (
+  `monsterID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `strength` int(11) DEFAULT NULL,
+  `health` int(11) DEFAULT NULL,
+  `agility` int(11) DEFAULT NULL,
+  `basedamage` int(11) DEFAULT NULL,
+  PRIMARY KEY (`monsterID`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- DungeonGame.player definition
+
+CREATE TABLE `player` (
+  `playerID` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) DEFAULT NULL,
+  `health` int(11) DEFAULT NULL,
+  `strength` int(11) DEFAULT NULL,
+  `intelligence` int(11) DEFAULT NULL,
+  `agility` int(11) DEFAULT NULL,
+  `experience` int(11) DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  `basedamage` int(11) DEFAULT NULL,
+  PRIMARY KEY (`playerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

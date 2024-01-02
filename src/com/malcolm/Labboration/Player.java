@@ -1,5 +1,4 @@
 package com.malcolm.Labboration;
-
 import java.util.Random;
 import static com.malcolm.Labboration.Colors.*;
 
@@ -14,6 +13,7 @@ public class Player implements ICombat{
     private int experience;
     private int level;
     private int baseDamage;
+    private int playerID;
 
     // KONSTRUKTOR
     public Player(int strength, int intelligence, int agility, int health, int level, int baseDamage) {
@@ -75,8 +75,23 @@ public class Player implements ICombat{
         this.level = level;
     }
 
+    public int getPlayerID() {
+        return playerID;
+    }
+    public void setPlayerID(int playerID) {
+        this.playerID = playerID;
+    }
+
+    public int getBaseDamage() {
+        return baseDamage;
+    }
+    public void setBaseDamage(int baseDamage) {
+        this.baseDamage = baseDamage;
+    }
+
     // SPELAREN STATUS/EGENSKAPER
     public void getStatus() {
+        System.out.printf("PlayerID: %d %n", playerID);
         System.out.printf("Name: %s %n", name);
         System.out.printf("Strength: %d %n", strength);
         System.out.printf("Intelligence: %d %n", intelligence);
@@ -101,7 +116,9 @@ public class Player implements ICombat{
                 setHealth(getHealth() + 2);
 
                 System.out.println(BLUE + "YOU REACHED NEW LEVEL.. CONGRATS!!\n" + RESET);
+                DBConnection db = new DBConnection();
             }
+
         }
 
         System.out.println(BLUE + "==============");
